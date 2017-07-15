@@ -64,9 +64,18 @@
     <form name="clients" method="POST">
         <input name="show" type="submit" value="Show clients">
 
-        <input type="hidden" name="state" value="show">
+        <input type="hidden" name="state" value="show_clients">
     </form>
 </div>
+
+<div class="show">
+    <form name="clients" method="POST">
+        <input name="show" type="submit" value="Show products">
+
+        <input type="hidden" name="state" value="show_products">
+    </form>
+</div>
+
 <div>
     <button onclick="changeForm()">Switch to add client/product</button>
 </div>
@@ -105,7 +114,7 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
     }
 }
 
-if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show') {
+if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_clients') {
     $sql = "SELECT * FROM clients";
     $result = $connection->query($sql);
     if ($result->num_rows > 0) {
@@ -122,6 +131,30 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'sh
                 . "<td>" . $row["name"] . "</td>"
                 . "<td>" . $row["age"] . "</td>"
                 . "<td>" . $row["purchase_price"] . "</td></tr>";
+        }
+        echo "</table></div>";
+    } else {
+        echo "No elements in table";
+    }
+}
+
+if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_products') {
+    $sql = "SELECT * FROM products";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        echo "<div class='products_display'>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>type</td>
+            <td>price</td>
+        </tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["productID"] . "</td>"
+                . "<td>" . $row["name"] . "</td>"
+                . "<td>" . $row["type"] . "</td>"
+                . "<td>" . $row["price"] . "</td></tr>";
         }
         echo "</table></div>";
     } else {

@@ -12,10 +12,8 @@
     margin-top: 20px;
 }
 
-.clients_display {
-}
 
-.clients_display td {
+.clients_display td, .products_display td {
     border-bottom: 1pt solid black;
 }
 
