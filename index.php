@@ -92,6 +92,10 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
     $age = $_POST["age"];
     $purchase_price = $_POST["purchase_price"];
 
+    $name = $mysqli->real_escape_string($name);
+    $age = $mysqli->real_escape_string($age);
+    $purchase_price = $mysqli->real_escape_string($purchase_price);
+
     $sql = "INSERT INTO clients (name, age, purchase_price)
     VALUES ('" . $name . "','" . $age . "','" . $purchase_price . "')";
 
@@ -104,6 +108,10 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
     $name = $_POST["name"];
     $type = $_POST["type"];
     $price = $_POST["price"];
+
+    $name = $mysqli->real_escape_string($name);
+    $type = $mysqli->real_escape_string($type);
+    $price = $mysqli->real_escape_string($price);
 
     $sql = "INSERT INTO products (name, type, price)
     VALUES ('" . $name . "','" . $type . "','" . $price . "')";
