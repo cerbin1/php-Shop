@@ -79,7 +79,7 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-if ($_POST['state'] == 'add_client') {
+if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_client') {
     $name = $_POST["name"];
     $age = $_POST["age"];
     $purchase_price = $_POST["purchase_price"];
@@ -92,7 +92,7 @@ if ($_POST['state'] == 'add_client') {
     }
 }
 
-if ($_POST["state"] == 'add_product') {
+if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_product') {
     $name = $_POST["name"];
     $age = $_POST["age"];
     $purchase_price = $_POST["purchase_price"];
@@ -105,7 +105,7 @@ if ($_POST["state"] == 'add_product') {
     }
 }
 
-if ($_POST["state"] == "show") {
+if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show') {
     $sql = "SELECT * FROM clients";
     $result = $connection->query($sql);
     if ($result->num_rows > 0) {
