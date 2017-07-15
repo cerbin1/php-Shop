@@ -1,0 +1,11 @@
+.clients {
+    width: 10%;
+    margin: 0 auto;
+}
+
+.clients_display {
+}
+
+.clients_display td {
+    border-bottom: 1pt solid black;
+}
