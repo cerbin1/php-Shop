@@ -5,10 +5,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta charset='UTF-8'>
     <title>Shop</title>
+    <script>
+        function changeForm() {
+            var clients = document.getElementById('clients');
+            var products = document.getElementById('products');
+            if (clients && products) {
+                if (clients.style.display === 'none') {
+                    clients.style.display = 'block';
+                    products.style.display = 'none';
+                }
+                else {
+                    clients.style.display = 'none';
+                    products.style.display = 'block';
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 
-<div class="clients">
+<div class="add" id="clients">
+    Add client:
     <form name="clients" method="POST">
         <label> Name <br>
             <input type="text" name="name"><br>
@@ -26,12 +43,34 @@
     </form>
 </div>
 
-<div class="clients">
+<div class="add" id="products">
+    Add product:
+    <form name="products" method="POST">
+        <label> Name <br>
+            <input type="text" name="name"><br>
+        </label>
+        <label> Type <br>
+            <input type="number" name="age"><br>
+        </label>
+        <label> Description <br>
+            <input type="number" name="purchase_price"><br>
+        </label>
+
+        <input name="submit" type="submit">
+
+        <input type="hidden" name="state" value="add">
+    </form>
+</div>
+
+<div class="show">
     <form name="clients" method="POST">
         <input name="show" type="submit" value="Show clients">
 
         <input type="hidden" name="state" value="show">
     </form>
+</div>
+<div>
+    <button onclick="changeForm()">dupa</button>
 </div>
 
 <?php
