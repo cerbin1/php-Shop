@@ -46,13 +46,13 @@
     Add product:
     <form name="products" method="POST">
         <label> Name <br>
-            <input class="form-control" type="text" name="name"><br>
+            <input class="form-control" type="text" name="name">
         </label>
         <label> Type <br>
-            <input class="form-control" type="text" name="type"><br>
+            <input class="form-control" type="text" name="type">
         </label>
         <label> Price <br>
-            <input class="form-control" type="number" name="price"><br>
+            <input class="form-control" type="number" name="price">
         </label>
 
         <input class="btn btn-primary" type="submit" value="Add product">
