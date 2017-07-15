@@ -87,7 +87,12 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_client') {
+function isAddClientClicked()
+{
+    return isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_client';
+}
+
+if (isAddClientClicked()) {
     $name = $_POST["name"];
     $age = $_POST["age"];
     $purchase_price = $_POST["purchase_price"];
@@ -104,7 +109,12 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
     }
 }
 
-if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_product') {
+function isAddProductClicked()
+{
+    return isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_product';
+}
+
+if (isAddProductClicked()) {
     $name = $_POST["name"];
     $type = $_POST["type"];
     $price = $_POST["price"];
@@ -121,7 +131,12 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
     }
 }
 
-if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_clients') {
+function isShowClientsClicked()
+{
+    return isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_clients';
+}
+
+if (isShowClientsClicked()) {
     $sql = "SELECT * FROM clients";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
@@ -145,7 +160,12 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'sh
     }
 }
 
-if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_products') {
+function isShowProductsClicked()
+{
+    return isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_products';
+}
+
+if (isShowProductsClicked()) {
     $sql = "SELECT * FROM products";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
