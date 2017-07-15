@@ -24,7 +24,7 @@
 </head>
 <body>
 
-<div class="add" id="clients">
+<div id="clients">
     Add client:
     <form name="clients" method="POST">
         <label> Name <br>
@@ -37,7 +37,7 @@
             <input class="form-control" type="number" name="purchase_price"><br>
         </label>
 
-        <input class="btn" name="submit" type="submit" value="Add client">
+        <input class="btn" type="submit" value="Add client">
         <input type="hidden" name="state" value="add_client">
     </form>
 </div>
@@ -55,28 +55,28 @@
             <input class="form-control" type="number" name="price"><br>
         </label>
 
-        <input class="btn" name="submit" type="submit" value="Add product">
+        <input class="btn" type="submit" value="Add product">
         <input type="hidden" name="state" value="add_product">
     </form>
 </div>
 
-<div class="show">
+<div>
     <form name="clients" method="POST">
-        <input class="btn" name="show" type="submit" value="Show clients">
+        <input class="btn" type="submit" value="Show clients">
 
         <input type="hidden" name="state" value="show_clients">
     </form>
 </div>
 
-<div class="show">
+<div>
     <form name="clients" method="POST">
-        <input class="btn" name="show" type="submit" value="Show products">
+        <input class="btn" type="submit" value="Show products">
 
         <input type="hidden" name="state" value="show_products">
     </form>
 </div>
 
-<div class="show">
+<div>
     <button class="btn" onclick="changeForm()">Switch to add client/product</button>
 </div>
 
