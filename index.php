@@ -2,6 +2,7 @@
 <html lang='en'>
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
     <meta charset='UTF-8'>
     <title>Shop</title>
     <script>
@@ -140,8 +141,8 @@ if (isShowClientsClicked()) {
     $sql = "SELECT * FROM clients";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
-        echo "<div class='clients_display'>
-    <table>
+        echo "<div class='row'></div><div class='col-md-4 clients_display'>
+    <table class='table table-hover'>
         <tr>
             <td>id</td>
             <td>name</td>
@@ -154,7 +155,7 @@ if (isShowClientsClicked()) {
                 . "<td>" . $row["age"] . "</td>"
                 . "<td>" . $row["purchase_price"] . "</td></tr>";
         }
-        echo "</table></div>";
+        echo "</table></div></div>";
     } else {
         echo "No elements in table";
     }
@@ -169,7 +170,7 @@ if (isShowProductsClicked()) {
     $sql = "SELECT * FROM products";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
-        echo "<div class='products_display'>
+        echo "<div class='col-md-4 products_display'>
     <table>
         <tr>
             <td>id</td>
