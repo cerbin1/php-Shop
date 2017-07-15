@@ -76,7 +76,7 @@
     </form>
 </div>
 
-<div class = "show">
+<div class="show">
     <button class="btn" onclick="changeForm()">Switch to add client/product</button>
 </div>
 
@@ -141,7 +141,7 @@ if (isShowClientsClicked()) {
     $sql = "SELECT * FROM clients";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
-        echo "<div class='row'></div><div class='col-md-4 clients_display'>
+        echo "<div class='row'><div class='col-md-4 clients_display'>
     <table class='table table-hover'>
         <tr>
             <td>id</td>
@@ -170,8 +170,8 @@ if (isShowProductsClicked()) {
     $sql = "SELECT * FROM products";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
-        echo "<div class='col-md-4 products_display'>
-    <table>
+        echo "<div class='row'><div class='col-md-4'>
+    <table class='table table-hover'>
         <tr>
             <td>id</td>
             <td>name</td>
@@ -184,7 +184,7 @@ if (isShowProductsClicked()) {
                 . "<td>" . $row["type"] . "</td>"
                 . "<td>" . $row["price"] . "</td></tr>";
         }
-        echo "</table></div>";
+        echo "</table></div></div>";
     } else {
         echo "No elements in table";
     }
