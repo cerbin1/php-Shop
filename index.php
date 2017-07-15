@@ -80,11 +80,11 @@
 </div>
 
 <?php
-$connection = new mysqli('localhost', 'root', '', 'shop');
+$mysqli = new mysqli('localhost', 'root', '', 'shop');
 
-if ($connection->connect_error) {
+if ($mysqli->connect_error) {
     echo "Error connecting to database";
-    die("Connection failed: " . $connection->connect_error);
+    die("Connection failed: " . $mysqli->connect_error);
 }
 
 if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_client') {
@@ -95,7 +95,7 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
     $sql = "INSERT INTO clients (name, age, purchase_price)
     VALUES ('" . $name . "','" . $age . "','" . $purchase_price . "')";
 
-    if (mysqli_query($connection, $sql)) {
+    if (mysqli_query($mysqli, $sql)) {
         echo "Added new client";
     }
 }
@@ -108,14 +108,14 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
     $sql = "INSERT INTO products (name, type, price)
     VALUES ('" . $name . "','" . $type . "','" . $price . "')";
 
-    if (mysqli_query($connection, $sql)) {
+    if (mysqli_query($mysqli, $sql)) {
         echo "Added new product";
     }
 }
 
 if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_clients') {
     $sql = "SELECT * FROM clients";
-    $result = $connection->query($sql);
+    $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
         echo "<div class='clients_display'>
     <table>
@@ -139,7 +139,7 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'sh
 
 if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'show_products') {
     $sql = "SELECT * FROM products";
-    $result = $connection->query($sql);
+    $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
         echo "<div class='products_display'>
     <table>
@@ -161,7 +161,7 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'sh
     }
 }
 
-$connection->close();
+$mysqli->close();
 ?>
 
 </body>
