@@ -24,25 +24,25 @@
 </head>
 <body>
 
-<div id="clients">
+<div class="col-sm-4" id="clients">
     Add client:
     <form name="clients" method="POST">
         <label> Name <br>
-            <input class="form-control" type="text" name="name"><br>
+            <input class="form-control" type="text" name="name">
         </label>
         <label> Age <br>
-            <input class="form-control" type="number" name="age"><br>
+            <input class="form-control" type="number" name="age">
         </label>
         <label> Purchase price <br>
-            <input class="form-control" type="number" name="purchase_price"><br>
+            <input class="form-control" type="number" name="purchase_price">
         </label>
 
-        <input class="btn" type="submit" value="Add client">
+        <input class="btn btn-primary" type="submit" value="Add client">
         <input type="hidden" name="state" value="add_client">
     </form>
 </div>
 
-<div class="add" id="products">
+<div class="col-sm-4" id="products">
     Add product:
     <form name="products" method="POST">
         <label> Name <br>
@@ -55,28 +55,24 @@
             <input class="form-control" type="number" name="price"><br>
         </label>
 
-        <input class="btn" type="submit" value="Add product">
+        <input class="btn btn-primary" type="submit" value="Add product">
         <input type="hidden" name="state" value="add_product">
     </form>
 </div>
 
-<div>
+<div class="buttons col-sm-2">
     <form name="clients" method="POST">
         <input class="btn" type="submit" value="Show clients">
 
         <input type="hidden" name="state" value="show_clients">
     </form>
-</div>
 
-<div>
     <form name="clients" method="POST">
         <input class="btn" type="submit" value="Show products">
 
         <input type="hidden" name="state" value="show_products">
     </form>
-</div>
 
-<div>
     <button class="btn" onclick="changeForm()">Switch to add client/product</button>
 </div>
 
@@ -141,7 +137,7 @@ if (isShowClientsClicked()) {
     $sql = "SELECT * FROM clients";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
-        echo "<div class='row'><div class='col-md-4 clients_display'>
+        echo "<div class='col-md-6 clients_display'>
     <table class='table table-hover'>
         <tr>
             <td>id</td>
@@ -155,7 +151,7 @@ if (isShowClientsClicked()) {
                 . "<td>" . $row["age"] . "</td>"
                 . "<td>" . $row["purchase_price"] . "</td></tr>";
         }
-        echo "</table></div></div>";
+        echo "</table></div>";
     } else {
         echo "No elements in table";
     }
@@ -170,7 +166,7 @@ if (isShowProductsClicked()) {
     $sql = "SELECT * FROM products";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
-        echo "<div class='row'><div class='col-md-4'>
+        echo "<div class='col-md-6 clients_display'>
     <table class='table table-hover'>
         <tr>
             <td>id</td>
@@ -184,7 +180,7 @@ if (isShowProductsClicked()) {
                 . "<td>" . $row["type"] . "</td>"
                 . "<td>" . $row["price"] . "</td></tr>";
         }
-        echo "</table></div></div>";
+        echo "</table></div>";
     } else {
         echo "No elements in table";
     }

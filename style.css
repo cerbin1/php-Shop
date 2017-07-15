@@ -9,3 +9,7 @@ label {
 .btn {
     margin: 5px;
 }
+.buttons .btn{
+    width: 100%;
+    text-align: center;
+}
