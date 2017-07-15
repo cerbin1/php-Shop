@@ -103,11 +103,11 @@ if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'ad
 
 if (isset($_POST) && array_key_exists('state', $_POST) && $_POST['state'] == 'add_product') {
     $name = $_POST["name"];
-    $age = $_POST["age"];
-    $purchase_price = $_POST["purchase_price"];
+    $type = $_POST["type"];
+    $price = $_POST["price"];
 
-    $sql = "INSERT INTO clients (name, age, purchase_price)
-    VALUES ('" . $name . "','" . $age . "','" . $purchase_price . "')";
+    $sql = "INSERT INTO products (name, type, price)
+    VALUES ('" . $name . "','" . $type . "','" . $price . "')";
 
     if (mysqli_query($connection, $sql)) {
         echo "Added new client";
