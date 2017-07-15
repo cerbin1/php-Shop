@@ -37,9 +37,8 @@
             <input type="number" name="purchase_price"><br>
         </label>
 
-        <input name="submit" type="submit">
-
-        <input type="hidden" name="state" value="add">
+        <input name="submit" type="submit" value="Add client">
+        <input type="hidden" name="state" value="add_client">
     </form>
 </div>
 
@@ -50,15 +49,14 @@
             <input type="text" name="name"><br>
         </label>
         <label> Type <br>
-            <input type="number" name="age"><br>
+            <input type="text" name="type"><br>
         </label>
-        <label> Description <br>
-            <input type="number" name="purchase_price"><br>
+        <label> Price <br>
+            <input type="number" name="price"><br>
         </label>
 
-        <input name="submit" type="submit">
-
-        <input type="hidden" name="state" value="add">
+        <input name="submit" type="submit" value="Add product">
+        <input type="hidden" name="state" value="add_product">
     </form>
 </div>
 
@@ -70,7 +68,7 @@
     </form>
 </div>
 <div>
-    <button onclick="changeForm()">dupa</button>
+    <button onclick="changeForm()">Switch to add client/product</button>
 </div>
 
 <?php
@@ -81,7 +79,20 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-if ($_POST["state"] == "add") {
+if ($_POST['state'] == 'add_client') {
+    $name = $_POST["name"];
+    $age = $_POST["age"];
+    $purchase_price = $_POST["purchase_price"];
+
+    $sql = "INSERT INTO clients (name, age, purchase_price)
+    VALUES ('" . $name . "','" . $age . "','" . $purchase_price . "')";
+
+    if (mysqli_query($connection, $sql)) {
+        echo "Added new client";
+    }
+}
+
+if ($_POST["state"] == 'add_product') {
     $name = $_POST["name"];
     $age = $_POST["age"];
     $purchase_price = $_POST["purchase_price"];
