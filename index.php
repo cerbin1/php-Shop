@@ -28,13 +28,13 @@
     Add client:
     <form name="clients" method="POST">
         <label> Name <br>
-            <input type="text" name="name"><br>
+            <input class="form-control" type="text" name="name"><br>
         </label>
         <label> Age <br>
-            <input type="number" name="age"><br>
+            <input class="form-control" type="number" name="age"><br>
         </label>
         <label> Purchase price <br>
-            <input type="number" name="purchase_price"><br>
+            <input class="form-control" type="number" name="purchase_price"><br>
         </label>
 
         <input class="btn" name="submit" type="submit" value="Add client">
@@ -46,13 +46,13 @@
     Add product:
     <form name="products" method="POST">
         <label> Name <br>
-            <input type="text" name="name"><br>
+            <input class="form-control" type="text" name="name"><br>
         </label>
         <label> Type <br>
-            <input type="text" name="type"><br>
+            <input class="form-control" type="text" name="type"><br>
         </label>
         <label> Price <br>
-            <input type="number" name="price"><br>
+            <input class="form-control" type="number" name="price"><br>
         </label>
 
         <input class="btn" name="submit" type="submit" value="Add product">
