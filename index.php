@@ -37,7 +37,7 @@
             <input type="number" name="purchase_price"><br>
         </label>
 
-        <input name="submit" type="submit" value="Add client">
+        <input class="btn" name="submit" type="submit" value="Add client">
         <input type="hidden" name="state" value="add_client">
     </form>
 </div>
@@ -55,14 +55,14 @@
             <input type="number" name="price"><br>
         </label>
 
-        <input name="submit" type="submit" value="Add product">
+        <input class="btn" name="submit" type="submit" value="Add product">
         <input type="hidden" name="state" value="add_product">
     </form>
 </div>
 
 <div class="show">
     <form name="clients" method="POST">
-        <input name="show" type="submit" value="Show clients">
+        <input class="btn" name="show" type="submit" value="Show clients">
 
         <input type="hidden" name="state" value="show_clients">
     </form>
@@ -70,14 +70,14 @@
 
 <div class="show">
     <form name="clients" method="POST">
-        <input name="show" type="submit" value="Show products">
+        <input class="btn" name="show" type="submit" value="Show products">
 
         <input type="hidden" name="state" value="show_products">
     </form>
 </div>
 
-<div>
-    <button onclick="changeForm()">Switch to add client/product</button>
+<div class = "show">
+    <button class="btn" onclick="changeForm()">Switch to add client/product</button>
 </div>
 
 <?php
