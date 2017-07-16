@@ -47,12 +47,7 @@
 
 <div class="col-md-6">
     <table id="clients-table" class="table table-hover">
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Age</td>
-            <td>Purchase price</td>
-        </tr>
+        <tr></tr>
     </table>
 </div>
 
@@ -68,6 +63,13 @@
             var clients = JSON.parse(response).clients;
 
             $("#clients-table").find('tr').not(':first').remove();
+            $("#clients-table").append(
+                $('<tr>')
+                    .append($('<td>').text('ID'))
+                    .append($('<td>').text('Name'))
+                    .append($('<td>').text('Age'))
+                    .append($('<td>').text('Purchase price')
+                    ));
             for (var index in clients) {
                 $("#clients-table").append(
                     $('<tr>')
@@ -75,6 +77,33 @@
                         .append($('<td>').text(clients[index].name))
                         .append($('<td>').text(clients[index].age))
                         .append($('<td>').text(clients[index].purchase_price))
+                );
+            }
+            console.log(response);
+        });
+    })
+    ;
+
+    $("#show-products").click(function () {
+        $.get('backend.php', {action: 'products'}).then(function (response) {
+            var products = JSON.parse(response).products;
+
+            $("#clients-table").find('tr').not(':first').remove();
+            $("#clients-table").append(
+                $('<tr>')
+                    .append($('<td>').text('ID'))
+                    .append($('<td>').text('Name'))
+                    .append($('<td>').text('Type'))
+                    .append($('<td>').text('Price')
+                    ));
+
+            for (var index in products) {
+                $("#clients-table").append(
+                    $('<tr>')
+                        .append($('<td>').text(products[index].id))
+                        .append($('<td>').text(products[index].name))
+                        .append($('<td>').text(products[index].type))
+                        .append($('<td>').text(products[index].price))
                 );
             }
             console.log(response);
