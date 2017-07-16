@@ -9,7 +9,16 @@ label {
 .btn {
     margin: 5px;
 }
-.buttons .btn{
+
+.buttons .btn {
     width: 100%;
     text-align: center;
+}
+
+#clients, #products {
+    display: none;
+}
+
+#products.form-visible, #clients.form-visible {
+    display: block;
 }
