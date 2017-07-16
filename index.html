@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset='UTF-8'>
+    <title>Shop</title>
+</head>
+<body>
+
+<div class="col-sm-4 form-visible" id="clients">
+    Add client:
+    <label> Name
+        <input class="form-control" type="text" id="client-name">
+    </label>
+    <label> Age
+        <input class="form-control" type="number" id="client-age">
+    </label>
+    <label> Purchase price
+        <input class="form-control" type="number" id="client-purchase-price">
+    </label>
+
+    <button class="btn btn-primary">Add client</button>
+</div>
+
+<div class="col-sm-4" id="products">
+    Add product:
+    <label> Name
+        <input class="form-control" type="text" id="product-name">
+    </label>
+    <label> Type
+        <input class="form-control" type="text" id="product-type">
+    </label>
+    <label> Price
+        <input class="form-control" type="number" id="product-price">
+    </label>
+
+    <button class="btn btn-primary">Add product</button>
+</div>
+
+<div class="buttons col-sm-2">
+    <button id="show-clients" class="btn">Show clients</button>
+    <button id="show-products" class="btn">Show products</button>
+    <button id="toggle-form" class="btn">Switch to add client/product</button>
+</div>
+
+<div class="col-md-6">
+    <table id="clients-table" class="table table-hover">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Purchase price</td>
+        </tr>
+    </table>
+</div>
+
+
+<script>
+    $("button#toggle-form").click(function () {
+        $("#clients").toggleClass("form-visible");
+        $("#products").toggleClass("form-visible");
+    });
+
+    $("#show-clients").click(function () {
+        $.get('backend.php', {action: 'clients'}).then(function (response) {
+            var clients = JSON.parse(response).clients;
+
+            $("#clients-table").find('tr').not(':first').remove();
+            for (var index in clients) {
+                $("#clients-table").append(
+                    $('<tr>')
+                        .append($('<td>').text(clients[index].id))
+                        .append($('<td>').text(clients[index].name))
+                        .append($('<td>').text(clients[index].age))
+                        .append($('<td>').text(clients[index].purchase_price))
+                );
+            }
+            console.log(response);
+        });
+    });
+
+
+</script>
+</body>
+</html>
