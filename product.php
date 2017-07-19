@@ -2,17 +2,17 @@
 $mysqli = new mysqli('localhost', 'root', '', 'shop');
 
 if ($mysqli->connect_error) {
-    echo "Error connecting to database";
-    die("Connection failed: " . $mysqli->connect_error);
+    echo 'Error connecting to database';
+    die('Connection failed: ' . $mysqli->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($_POST['action'] == 'product') {
-        $name = $_POST["name"];
-        $type = $_POST["type"];
-        $price = $_POST["price"];
+        $name = $_POST['name'];
+        $type = $_POST['type'];
+        $price = $_POST['price'];
 
         $name = $mysqli->real_escape_string($name);
         $age = $mysqli->real_escape_string($type);
@@ -20,14 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         $sql = "INSERT INTO products (name, type, price)
-            VALUES ('$name','$type','$price')";
+            VALUES ($name, $type, $price)";
 
         if (isValidProduct($name, $type, $price)) {
             if (mysqli_query($mysqli, $sql)) {
                 echo 'Added new product';
             }
         } else {
-            echo "Error";
+            echo 'Error';
         }
     }
 }
@@ -44,7 +44,7 @@ function isValidProduct($name, $type, $price)
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'products') {
-        $result = $mysqli->query("SELECT * FROM products");
+        $result = $mysqli->query('SELECT * FROM products');
         $array = array();
 
         while ($row = mysqli_fetch_assoc($result)) {

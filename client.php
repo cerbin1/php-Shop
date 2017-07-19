@@ -2,15 +2,15 @@
 $mysqli = new mysqli('localhost', 'root', '', 'shop');
 
 if ($mysqli->connect_error) {
-    echo "Error connecting to database";
-    die("Connection failed: " . $mysqli->connect_error);
+    echo 'Error connecting to database';
+    die('Connection failed: ' . $mysqli->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['action'] == 'client') {
-        $name = $_POST["name"];
-        $age = $_POST["age"];
-        $purchase_price = $_POST["purchase_price"];
+        $name = $_POST['name'];
+        $age = $_POST['age'];
+        $purchase_price = $_POST['purchase_price'];
 
         $name = $mysqli->real_escape_string($name);
         $age = $mysqli->real_escape_string($age);
@@ -18,14 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         $sql = "INSERT INTO clients (name, age, purchase_price)
-            VALUES ('$name','$age','$purchase_price')";
+            VALUES ($name, $age, $purchase_price)";
 
         if (isValidClient($name, $age, $purchase_price)) {
             if (mysqli_query($mysqli, $sql)) {
                 echo 'Added new client';
             }
         } else {
-            echo "Error";
+            echo 'Error';
         }
     }
 }
@@ -42,7 +42,7 @@ function isValidClient($name, $age, $purchase_price)
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'clients') {
 
-        $result = $mysqli->query("SELECT * FROM clients");
+        $result = $mysqli->query('SELECT * FROM clients');
         $array = array();
 
         while ($row = mysqli_fetch_assoc($result)) {
