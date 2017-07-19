@@ -120,7 +120,6 @@
         $.get('product.php', {action: 'products'}).then(function (response) {
             var products = JSON.parse(response).products;
 
-
             $("#display-table")
                 .empty()
                 .append($('<table>')
@@ -148,8 +147,6 @@
             console.log(response);
         });
     });
-
-
 </script>
 </body>
 </html>
