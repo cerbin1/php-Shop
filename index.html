@@ -62,7 +62,7 @@
         var name = $("#client-name").val();
         var age = $("#client-age").val();
         var purchase_price = $("#client-purchase-price").val();
-        $.post('backend.php', {
+        $.post('client.php', {
             action: 'client',
             name: name,
             age: age,
@@ -76,7 +76,7 @@
         var name = $("#product-name").val();
         var type = $("#product-type").val();
         var price = $("#product-price").val();
-        $.post('backend.php', {
+        $.post('product.php', {
             action: 'product',
             name: name,
             type: type,
@@ -87,7 +87,7 @@
     });
 
     $("#show-clients").click(function () {
-        $.get('backend.php', {action: 'clients'}).then(function (response) {
+        $.get('client.php', {action: 'clients'}).then(function (response) {
             var clients = JSON.parse(response).clients;
 
             $("#clients-table").find('tr').not(':first').remove().append(
@@ -112,7 +112,7 @@
     });
 
     $("#show-products").click(function () {
-        $.get('backend.php', {action: 'products'}).then(function (response) {
+        $.get('product.php', {action: 'products'}).then(function (response) {
             var products = JSON.parse(response).products;
 
             $("#clients-table").find('tr').not(':first').remove().append(
