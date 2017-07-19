@@ -36,7 +36,7 @@
         <input class="form-control" type="number" id="product-price">
     </label>
 
-    <button class="btn btn-primary">Add product</button>
+    <button id="add-product" class="btn btn-primary">Add product</button>
 </div>
 
 <div class="buttons col-sm-2">
@@ -72,6 +72,20 @@
         })
     });
 
+    $("#add-product").click(function () {
+        var name = $("#product-name").val();
+        var type = $("#product-type").val();
+        var price = $("#product-price").val();
+        $.post('backend.php', {
+            action: 'product',
+            name: name,
+            type: type,
+            price: price
+        }).then(function (response) {
+            alert(response);
+        })
+    });
+
     $("#show-clients").click(function () {
         $.get('backend.php', {action: 'clients'}).then(function (response) {
             var clients = JSON.parse(response).clients;
@@ -83,6 +97,7 @@
                     .append($('<td>').text('Age'))
                     .append($('<td>').text('Purchase price')
                     ));
+
             for (var index in clients) {
                 $("#clients-table").append(
                     $('<tr>')
