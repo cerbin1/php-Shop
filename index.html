@@ -12,16 +12,16 @@
 <div class="col-sm-4 form-visible" id="clients">
     Add client:
     <label> Name
-        <input class="form-control" type="text" id="client-name">
+        <input id="client-name" class="form-control" type="text">
     </label>
     <label> Age
-        <input class="form-control" type="number" id="client-age">
+        <input id="client-age" class="form-control" type="number">
     </label>
     <label> Purchase price
-        <input class="form-control" type="number" id="client-purchase-price">
+        <input id="client-purchase-price" class="form-control" type="number">
     </label>
 
-    <button class="btn btn-primary">Add client</button>
+    <button id="add-client" class="btn btn-primary">Add client</button>
 </div>
 
 <div class="col-sm-4" id="products">
@@ -40,8 +40,8 @@
 </div>
 
 <div class="buttons col-sm-2">
-    <button id="show-clients" class="btn">Show clients</button>
-    <button id="show-products" class="btn">Show products</button>
+    <button id="show-clients" class="btn">Clients</button>
+    <button id="show-products" class="btn">Products</button>
     <button id="toggle-form" class="btn">Switch to add client/product</button>
 </div>
 
@@ -58,12 +58,25 @@
         $("#products").toggleClass("form-visible");
     });
 
+    $("#add-client").click(function () {
+        var name = $("#client-name").val();
+        var age = $("#client-age").val();
+        var purchase_price = $("#client-purchase-price").val();
+        $.post('backend.php', {
+            action: 'client',
+            name: name,
+            age: age,
+            purchase_price: purchase_price
+        }).then(function (response) {
+            alert(response);
+        })
+    });
+
     $("#show-clients").click(function () {
         $.get('backend.php', {action: 'clients'}).then(function (response) {
             var clients = JSON.parse(response).clients;
 
-            $("#clients-table").find('tr').not(':first').remove();
-            $("#clients-table").append(
+            $("#clients-table").find('tr').not(':first').remove().append(
                 $('<tr>')
                     .append($('<td>').text('ID'))
                     .append($('<td>').text('Name'))
@@ -81,15 +94,13 @@
             }
             console.log(response);
         });
-    })
-    ;
+    });
 
     $("#show-products").click(function () {
         $.get('backend.php', {action: 'products'}).then(function (response) {
             var products = JSON.parse(response).products;
 
-            $("#clients-table").find('tr').not(':first').remove();
-            $("#clients-table").append(
+            $("#clients-table").find('tr').not(':first').remove().append(
                 $('<tr>')
                     .append($('<td>').text('ID'))
                     .append($('<td>').text('Name'))
