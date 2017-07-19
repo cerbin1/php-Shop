@@ -45,10 +45,8 @@
     <button id="toggle-form" class="btn">Switch to add client/product</button>
 </div>
 
-<div class="col-md-6">
-    <table id="clients-table" class="table table-hover">
-        <tr></tr>
-    </table>
+<div id="display-table" class="col-md-6">
+
 </div>
 
 
@@ -90,13 +88,20 @@
         $.get('client.php', {action: 'clients'}).then(function (response) {
             var clients = JSON.parse(response).clients;
 
-            $("#clients-table").find('tr').not(':first').remove().append(
-                $('<tr>')
-                    .append($('<td>').text('ID'))
-                    .append($('<td>').text('Name'))
-                    .append($('<td>').text('Age'))
-                    .append($('<td>').text('Purchase price')
-                    ));
+            $("#display-table")
+                .empty()
+                .append($('<table>')
+                    .attr('id', 'clients-table')
+                    .addClass('table')
+                    .addClass('table-hover')
+                    .append($('<tbody>').append(($('<tr>')
+                                .append($('<td>').text('ID'))
+                                .append($('<td>').text('Name'))
+                                .append($('<td>').text('Age'))
+                                .append($('<td>').text('Purchase price'))
+                        ))
+                    )
+                );
 
             for (var index in clients) {
                 $("#clients-table").append(
@@ -115,16 +120,24 @@
         $.get('product.php', {action: 'products'}).then(function (response) {
             var products = JSON.parse(response).products;
 
-            $("#clients-table").find('tr').not(':first').remove().append(
-                $('<tr>')
-                    .append($('<td>').text('ID'))
-                    .append($('<td>').text('Name'))
-                    .append($('<td>').text('Type'))
-                    .append($('<td>').text('Price')
-                    ));
+
+            $("#display-table")
+                .empty()
+                .append($('<table>')
+                    .attr('id', 'products-table')
+                    .addClass('table')
+                    .addClass('table-hover')
+                    .append($('<tbody>').append(($('<tr>')
+                                .append($('<td>').text('ID'))
+                                .append($('<td>').text('Name'))
+                                .append($('<td>').text('Type'))
+                                .append($('<td>').text('Price'))
+                        ))
+                    )
+                );
 
             for (var index in products) {
-                $("#clients-table").append(
+                $('#products-table').append(
                     $('<tr>')
                         .append($('<td>').text(products[index].id))
                         .append($('<td>').text(products[index].name))
