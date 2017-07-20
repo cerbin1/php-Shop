@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $age = $mysqli->real_escape_string($age);
         $purchase_price = $mysqli->real_escape_string($purchase_price);
 
-
         $sql = "INSERT INTO clients (name, age, purchase_price)
             VALUES ('$name', $age, $purchase_price)";
 
