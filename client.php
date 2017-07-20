@@ -18,11 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         $sql = "INSERT INTO clients (name, age, purchase_price)
-            VALUES ($name, $age, $purchase_price)";
+            VALUES ('$name', $age, $purchase_price)";
 
         if (isValidClient($name, $age, $purchase_price)) {
-            if (mysqli_query($mysqli, $sql)) {
+            if ($mysqli->query($sql)) {
                 echo 'Added new client';
+            } else {
+                echo 'Error: ' . $mysqli->error;
             }
         } else {
             echo 'Error';

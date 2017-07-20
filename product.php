@@ -7,8 +7,6 @@ if ($mysqli->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
     if ($_POST['action'] == 'product') {
         $name = $_POST['name'];
         $type = $_POST['type'];
@@ -20,14 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         $sql = "INSERT INTO products (name, type, price)
-            VALUES ($name, $type, $price)";
+            VALUES ('$name', '$type', $price)";
 
         if (isValidProduct($name, $type, $price)) {
-            if (mysqli_query($mysqli, $sql)) {
+            if ($mysqli->query($sql)) {
                 echo 'Added new product';
             }
         } else {
-            echo 'Error';
+            echo 'Error: ' . $mysqli->error;
         }
     }
 }
