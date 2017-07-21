@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function isValidProduct($name, $type, $price)
 {
     return preg_match('/^[a-ząęóśłńćżź]{3,20}$/i', $name)
-        && strlen($name)
         && preg_match('/^[a-ząęóśłńćżź]{3,25}$/i', $type)
         && preg_match('/^[0-9]+(.[0-9]{2})?$/', $price)
         && $price < 10000;
