@@ -39,12 +39,14 @@
     </label>
 
     <button id="add-product" class="btn btn-primary">Add product</button>
+    <button id="add-new-type" class="btn">Add new type</button>
 </div>
 
 <div class="buttons col-sm-2">
     <button id="show-clients" class="btn">Clients</button>
     <button id="show-products" class="btn">Products</button>
     <button id="toggle-form" class="btn">Switch to add client/product</button>
+    <div id="dialog-test"></div>
 </div>
 
 <div id="display-table" class="col-md-6">
@@ -53,16 +55,39 @@
 
 <script>
     $(document).ready(function () {
+        loadTypesOfProducts();
+    });
+    function loadTypesOfProducts() {
         $.get('product_types.php', {action: 'type'}).then(function (response) {
             var types = JSON.parse(response).types;
+
+            var product_type = $('#product-type');
+
+            product_type.empty();
             for (var index in types) {
-                $('#product-type')
+                product_type
                     .append($('<option>', {
-                        value: types[index].type,
-                        text: types[index].type
+                        value: types[index].name,
+                        text: types[index].name
                     }));
             }
         })
+    }
+
+    $('#add-new-type').click(function () {
+        var output = prompt("New type");
+        if (output !== null || output !== '' && output.test('/^[a-ząęóśłńćżź]{3,25}$/i')) {
+            $.post('product_types.php', {
+                action: 'add',
+                type: output
+            }).then(function (response) {
+                loadTypesOfProducts();
+                alert(response);
+            })
+        }
+        else {
+            alert('error');
+        }
     });
 
     $("button#toggle-form").click(function () {
