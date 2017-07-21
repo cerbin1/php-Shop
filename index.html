@@ -51,14 +51,11 @@
 
 </div>
 
-
 <script>
     $(document).ready(function () {
         $.get('product_types.php', {action: 'type'}).then(function (response) {
-            alert(response);
             var types = JSON.parse(response).types;
             for (var index in types) {
-                alert(types[index].type);
                 $('#product-type')
                     .append($('<option>', {
                         value: types[index].type,
@@ -103,7 +100,6 @@
 
     $("#show-clients").click(function () {
         $.get('client.php', {action: 'clients'}).then(function (response) {
-            var clients = JSON.parse(response);
 
             $("#display-table")
                 .empty()
@@ -120,6 +116,8 @@
                     )
                 );
 
+            var clients = JSON.parse(response).clients;
+
             for (var index in clients) {
                 $("#clients-table").append(
                     $('<tr>')
@@ -135,7 +133,6 @@
 
     $("#show-products").click(function () {
         $.get('product.php', {action: 'products'}).then(function (response) {
-            var products = JSON.parse(response).products;
 
             $("#display-table")
                 .empty()
@@ -151,6 +148,8 @@
                         ))
                     )
                 );
+
+            var products = JSON.parse(response).products;
 
             for (var index in products) {
                 $('#products-table').append(
