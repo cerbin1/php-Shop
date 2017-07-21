@@ -30,7 +30,9 @@
         <input class="form-control" type="text" id="product-name">
     </label>
     <label> Type
-        <input class="form-control" type="text" id="product-type">
+        <select id="product-type" name="product-type" class="form-control">
+
+        </select>
     </label>
     <label> Price
         <input class="form-control" type="number" id="product-price">
@@ -51,6 +53,21 @@
 
 
 <script>
+    $(document).ready(function () {
+        $.get('product_types.php', {action: 'type'}).then(function (response) {
+            alert(response);
+            var types = JSON.parse(response).types;
+            for (var index in types) {
+                alert(types[index].type);
+                $('#product-type')
+                    .append($('<option>', {
+                        value: types[index].type,
+                        text: types[index].type
+                    }));
+            }
+        })
+    });
+
     $("button#toggle-form").click(function () {
         $("#clients").toggleClass("form-visible");
         $("#products").toggleClass("form-visible");
@@ -86,7 +103,7 @@
 
     $("#show-clients").click(function () {
         $.get('client.php', {action: 'clients'}).then(function (response) {
-            var clients = JSON.parse(response).clients;
+            var clients = JSON.parse(response);
 
             $("#display-table")
                 .empty()
