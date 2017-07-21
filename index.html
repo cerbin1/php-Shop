@@ -58,7 +58,7 @@
         loadTypesOfProducts();
     });
     function loadTypesOfProducts() {
-        $.get('product_types.php', {action: 'type'}).then(function (response) {
+        $.get('product_types.php', {action: 'get'}).then(function (response) {
             var types = JSON.parse(response).types;
 
             var product_type = $('#product-type');

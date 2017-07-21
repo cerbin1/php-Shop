@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if ($_GET['action'] == 'type') {
+    if ($_GET['action'] == 'get') {
         $result = $mysqli->query('SELECT name FROM types');
         $array = array();
 
