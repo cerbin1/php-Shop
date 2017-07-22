@@ -74,7 +74,7 @@
     </div>
 </div>
 
-<div id="display-table" class="col-md-6">
+<div id="display-records-div" class="col-md-6">
 
 </div>
 
@@ -151,13 +151,14 @@
     function showClients() {
         $.get('client.php', {action: 'clients'}).then(function (response) {
 
-            $("#display-table")
+            $("#display-records-div")
                 .empty()
                 .append($('<table>')
                     .attr('id', 'clients-table')
                     .addClass('table')
                     .addClass('table-hover')
-                    .append($('<tbody>').append(($('<tr>')
+                    .append($('<tbody>')
+                        .append(($('<tr>')
                                 .append($('<td>').text('ID'))
                                 .append($('<td>').text('Name'))
                                 .append($('<td>').text('Age'))
@@ -184,13 +185,14 @@
     $("#show-products").click(function () {
         $.get('product.php', {action: 'products'}).then(function (response) {
 
-            $("#display-table")
+            $("#display-records-div")
                 .empty()
                 .append($('<table>')
                     .attr('id', 'products-table')
                     .addClass('table')
                     .addClass('table-hover')
-                    .append($('<tbody>').append(($('<tr>')
+                    .append($('<tbody>')
+                        .append(($('<tr>')
                                 .append($('<td>').text('ID'))
                                 .append($('<td>').text('Name'))
                                 .append($('<td>').text('Type'))
