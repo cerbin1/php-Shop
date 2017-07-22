@@ -17,10 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (isValidProduct($name, $type, $price)) {
             if ($mysqli->query($sql)) {
-                echo 'Added new product';
+                http_response_code(201);
+            } else {
+                http_response_code(500);
             }
         } else {
-            echo 'Error: ' . $mysqli->error;
+            http_response_code(422);
         }
     }
 }
@@ -37,13 +39,17 @@ function isValidProduct($name, $type, $price)
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'products') {
         $result = $mysqli->query('SELECT * FROM products');
-        $array = array();
+        if ($result) {
+            $array = array();
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $array[] = $row;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $array[] = $row;
+            }
+
+            echo json_encode(['products' => $array]);
+        } else {
+            http_response_code(500);
         }
-
-        echo json_encode(['products' => $array]);
     }
 }
 

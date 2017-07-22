@@ -16,12 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (isValidClient($name, $age, $purchase_price)) {
             if ($mysqli->query($sql)) {
-                echo 'Added new client';
+                http_response_code(201);
             } else {
-                echo 'Error: ' . $mysqli->error;
+                http_response_code(500);
             }
         } else {
-            echo 'Error';
+            http_response_code(422);
         }
     }
 }
@@ -39,13 +39,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'clients') {
 
         $result = $mysqli->query('SELECT * FROM clients');
-        $array = array();
+        if($result) {
+            $array = array();
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $array[] = $row;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $array[] = $row;
+            }
+
+            echo json_encode(['clients' => $array]);
         }
-
-        echo json_encode(['clients' => $array]);
+        else {
+            http_response_code(500);
+        }
     }
 }
 
