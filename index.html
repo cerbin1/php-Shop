@@ -14,10 +14,6 @@
 <div class="buttons col-sm-2">
     <button id="show-clients" class="btn">Clients</button>
     <button id="show-products" class="btn">Products</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-client-modal">Add client
-    </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product-modal">Add product
-    </button>
 </div>
 
 <div id="add-client-modal" class="modal fade" role="dialog">
@@ -153,6 +149,12 @@
 
             $("#display-records-div")
                 .empty()
+                .append($('<button>')
+                    .prop('type', 'button')
+                    .addClass('btn btn-primary')
+                    .attr('data-toggle', 'modal')
+                    .attr('data-target', '#add-client-modal')
+                    .text('Add client'))
                 .append($('<table>')
                     .attr('id', 'clients-table')
                     .addClass('table')
@@ -187,6 +189,12 @@
 
             $("#display-records-div")
                 .empty()
+                .append($('<button>')
+                    .addClass('btn btn-primary')
+                    .prop('type', 'button')
+                    .attr('data-toggle', 'modal')
+                    .attr('data-target', '#add-product-modal')
+                    .text('Add product'))
                 .append($('<table>')
                     .attr('id', 'products-table')
                     .addClass('table')
