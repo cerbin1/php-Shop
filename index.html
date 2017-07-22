@@ -75,9 +75,6 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        loadTypesOfProducts();
-    });
     function loadTypesOfProducts() {
         $.get('product_types.php', {action: 'get'}).then(function (response) {
             var types = JSON.parse(response).types;
@@ -186,6 +183,7 @@
 
     $("#show-products").click(function () {
         $.get('product.php', {action: 'products'}).then(function (response) {
+            loadTypesOfProducts();
 
             $("#display-records-div")
                 .empty()
