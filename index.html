@@ -171,7 +171,7 @@
             for (var index in clients) {
                 $("#clients-table").append(
                     $('<tr>')
-                        .append($('<td>').text(clients[index].id))
+                        .append($('<td>').text(clients[index].clientID))
                         .append($('<td>').text(clients[index].name))
                         .append($('<td>').text(clients[index].age))
                         .append($('<td>').text(clients[index].purchase_price))
@@ -204,7 +204,7 @@
             for (var index in products) {
                 $('#products-table').append(
                     $('<tr>')
-                        .append($('<td>').text(products[index].id))
+                        .append($('<td>').text(products[index].productID))
                         .append($('<td>').text(products[index].name))
                         .append($('<td>').text(products[index].type))
                         .append($('<td>').text(products[index].price))
