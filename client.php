@@ -38,7 +38,7 @@ function isValidClient($name, $age, $purchase_price)
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'clients') {
 
-        $result = $mysqli->query('SELECT * FROM clients');
+        $result = $mysqli->query('SELECT * FROM clients LIMIT 10');
         if($result) {
             $array = array();
 

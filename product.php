@@ -38,7 +38,7 @@ function isValidProduct($name, $type, $price)
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'products') {
-        $result = $mysqli->query('SELECT * FROM products');
+        $result = $mysqli->query('SELECT * FROM products LIMIT 10');
         if ($result) {
             $array = array();
 
