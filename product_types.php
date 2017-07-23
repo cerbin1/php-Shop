@@ -3,17 +3,17 @@ $mysqli = include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['action'] == 'add') {
-        $name = $_POST['type'];
+        $type = $_POST['type'];
 
-        $name = $mysqli->real_escape_string($name);
+        $type = $mysqli->real_escape_string($type);
 
         $sql = "INSERT INTO types (name)
-            VALUES ('$name')";
+            VALUES ('$type')";
 
         if ($mysqli->query($sql)) {
-            echo 'Added new type';
+            http_response_code(201);
         } else {
-            echo 'Error';
+            http_response_code(500);
         }
     }
 }
