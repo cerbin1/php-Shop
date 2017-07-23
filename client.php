@@ -7,15 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $age = $_POST['age'];
         $purchase_price = $_POST['purchase_price'];
 
-        $name = $mysqli->real_escape_string($name);
-        $age = $mysqli->real_escape_string($age);
-        $purchase_price = $mysqli->real_escape_string($purchase_price);
+        $statement = $mysqli->prepare('INSERT INTO clients (name, age, purchase_price)
+            VALUES (?, ?,?)');
 
-        $sql = "INSERT INTO clients (name, age, purchase_price)
-            VALUES ('$name', $age, $purchase_price)";
+        $statement->bind_param('sid', $name, $age, $purchase_price);
 
         if (isValidClient($name, $age, $purchase_price)) {
-            if ($mysqli->query($sql)) {
+            if ($statement->execute()) {
                 http_response_code(201);
             } else {
                 http_response_code(500);

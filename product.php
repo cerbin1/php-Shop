@@ -7,16 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $type = $_POST['type'];
         $price = $_POST['price'];
 
-        $name = $mysqli->real_escape_string($name);
-        $age = $mysqli->real_escape_string($type);
-        $price = $mysqli->real_escape_string($price);
+        $statement = $mysqli->prepare('INSERT INTO products (name, type, price)
+            VALUES (?,?,?)');
 
-
-        $sql = "INSERT INTO products (name, type, price)
-            VALUES ('$name', '$type', $price)";
+        $statement->bind_param('ssd', $name, $type, $price);
 
         if (isValidProduct($name, $type, $price)) {
-            if ($mysqli->query($sql)) {
+            if ($statement->execute()) {
                 http_response_code(201);
             } else {
                 http_response_code(500);

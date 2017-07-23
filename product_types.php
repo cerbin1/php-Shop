@@ -5,12 +5,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['action'] == 'add') {
         $type = $_POST['type'];
 
-        $type = $mysqli->real_escape_string($type);
+        $statement = $mysqli->prepare('INSERT INTO types (name)
+            VALUES (?)');
+        echo $statement;
 
-        $sql = "INSERT INTO types (name)
-            VALUES ('$type')";
+        $statement->bind_param('s', $type);
 
-        if ($mysqli->query($sql)) {
+
+        if ($statement->execute()) {
             http_response_code(201);
         } else {
             http_response_code(500);
