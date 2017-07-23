@@ -37,9 +37,8 @@ function isValidClient($name, $age, $purchase_price)
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'clients') {
-
         $result = $mysqli->query('SELECT * FROM clients LIMIT 10');
-        if($result) {
+        if ($result) {
             $array = array();
 
             while ($row = mysqli_fetch_assoc($result)) {
@@ -47,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
 
             echo json_encode(['clients' => $array]);
-        }
-        else {
+        } else {
             http_response_code(500);
         }
     }
