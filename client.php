@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $purchase_price = $_POST['purchase_price'];
 
         $statement = $mysqli->prepare('INSERT INTO clients (name, age, purchase_price)
-            VALUES (?, ?,?)');
+            VALUES (?, ?, ?)');
 
         $statement->bind_param('sid', $name, $age, $purchase_price);
 
