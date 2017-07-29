@@ -24,13 +24,13 @@
                 <h4 class="modal-title">Add client</h4>
             </div>
             <div class="modal-body">
-                <label> Name
+                <label id="client-name-label"> Name
                     <input id="client-name" class="form-control">
                 </label>
-                <label> Age
+                <label id="client-age-label"> Age
                     <input id="client-age" class="form-control" type="number">
                 </label>
-                <label> Purchase price
+                <label id="client-purchase-price-label"> Purchase price
                     <input id="client-purchase-price" class="form-control" type="number">
                 </label>
             </div>
@@ -144,6 +144,33 @@
         var name = $("#client-name").val();
         var age = $("#client-age").val();
         var purchase_price = $("#client-purchase-price").val();
+
+        if (isInvalidName()) {
+            $("#client-name-label").addClass('has-error');
+            if (isInvalidAge()) {
+                $("#client-age-label").addClass('has-error');
+                if (isInvalidPurchasePrice()) {
+                    $("#client-purchase-price-label").addClass('has-error');
+                    return;
+                }
+            }
+        }
+
+        function isInvalidName() {
+            var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
+            return !namePattern.test(name);
+        }
+
+        function isInvalidAge() {
+            var agePattern = /^[0-9]{2}$/;
+            return !agePattern.test(age) || age <= 5 || 90 <= age;
+        }
+
+        function isInvalidPurchasePrice() {
+            var purchasePricePattern = /^[0-9]+(.[0-9]{2})?$/;
+            return !purchasePricePattern.test(purchase_price) || purchase_price < 0 || 10000 < purchase_price;
+        }
+
         $.post('client.php', {
             action: 'client',
             name: name,
@@ -152,6 +179,12 @@
         })
             .then(function () {
                 $('#add-client-modal').modal('hide');
+                $("#client-name-label").removeClass('has-error');
+                $("#client-age-label").removeClass('has-error');
+                $("#client-purchase-price-label").removeClass('has-error');
+                $("#client-name").val('');
+                $("#client-age").val('');
+                $("#client-purchase-price").val('');
                 showClients();
             })
             .catch(function () {
