@@ -25,7 +25,7 @@
             </div>
             <div class="modal-body">
                 <label> Name
-                    <input id="client-name" class="form-control" type="text">
+                    <input id="client-name" class="form-control">
                 </label>
                 <label> Age
                     <input id="client-age" class="form-control" type="number">
@@ -51,7 +51,7 @@
             </div>
             <div class="modal-body">
                 <label> Name
-                    <input id="product-name" class="form-control" type="text">
+                    <input id="product-name" class="form-control">
                 </label>
                 <label> Type
                     <select id="product-type" name="product-type" class="form-control">
@@ -79,7 +79,7 @@
             </div>
             <div id="div-show-types" class="modal-body">
                 <label> Name
-                    <input id="type-name" class="form-control" type="text">
+                    <input id="type-name" class="form-control">
                 </label>
             </div>
             <div class="modal-footer">
@@ -121,7 +121,7 @@
                 action: 'add',
                 type: type
             })
-                .then(function (response) {
+                .then(function () {
                     loadTypesOfProducts();
                     alert('Added new type');
                     showTypes();
