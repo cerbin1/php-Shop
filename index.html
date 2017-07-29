@@ -97,20 +97,25 @@
 
 <script>
     function loadTypesOfProducts() {
-        $.get('product_types.php', {action: 'get'}).then(function (response) {
-            var types = JSON.parse(response).types;
+        $.get('product_types.php', {action: 'get'})
+            .then(function (response) {
+                var types = JSON.parse(response).types;
 
-            var product_type = $('#product-type');
+                var product_type = $('#product-type');
 
-            product_type.empty();
-            for (var index in types) {
-                product_type
-                    .append($('<option>', {
-                        value: types[index].name,
-                        text: types[index].name
-                    }));
-            }
-        })
+                product_type.empty();
+                for (var index in types) {
+                    product_type
+                        .append($('<option>', {
+                            value: types[index].name,
+                            text: types[index].name
+                        }));
+                }
+            })
+            .catch(function () {
+                alert("Failed loading types of products");
+            })
+
     }
 
     $('#add-type').click(function () {
@@ -123,12 +128,12 @@
             })
                 .then(function () {
                     loadTypesOfProducts();
-                    alert('Added new type');
                     showTypes();
+                    $('#div-show-types').removeClass('has-error');
                 })
         }
         else {
-            alert("Wrong name of type");
+            $('#div-show-types').addClass('has-error');
         }
     });
 
