@@ -127,9 +127,9 @@
                 type: type
             })
                 .then(function () {
+                    $('#div-show-types').removeClass('has-error');
                     loadTypesOfProducts();
                     showTypes();
-                    $('#div-show-types').removeClass('has-error');
                 })
                 .catch(function () {
                     alert('Error adding new type');
@@ -321,7 +321,7 @@
 
                 }
                 $('#change-types-button').text('Add new type');
-                $('#add-type').attr('disabled', 'disabled');
+                $('#add-type').prop('disabled', 'disabled');
             })
             .catch(function () {
                 alert('Error');
@@ -330,7 +330,7 @@
 
     $(document).on('click', 'a.delete-type', function () {
         console.log(this);
-        var idType = $(this).attr('id');
+        var idType = $(this).prop('id');
         $.post('delete_type.php', {
             action: 'delete',
             id: idType

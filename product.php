@@ -2,7 +2,7 @@
 $mysqli = include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['action'] == 'product') {
+    if ($_POST['action'] === 'product') {
         $name = $_POST['name'];
         $type = $_POST['type'];
         $price = $_POST['price'];
@@ -34,7 +34,7 @@ function isValidProduct($name, $type, $price)
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if ($_GET['action'] == 'products') {
+    if ($_GET['action'] === 'products') {
         $result = $mysqli->query('SELECT * FROM products LIMIT 10');
         if ($result) {
             $array = array();

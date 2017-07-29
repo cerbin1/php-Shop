@@ -2,7 +2,7 @@
 $mysqli = include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['action'] == 'client') {
+    if ($_POST['action'] === 'client') {
         $name = $_POST['name'];
         $age = $_POST['age'];
         $purchase_price = $_POST['purchase_price'];
@@ -34,7 +34,7 @@ function isValidClient($name, $age, $purchase_price)
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if ($_GET['action'] == 'clients') {
+    if ($_GET['action'] === 'clients') {
         $result = $mysqli->query('SELECT * FROM clients LIMIT 10');
         if ($result) {
             $array = array();

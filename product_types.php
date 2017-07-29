@@ -2,7 +2,7 @@
 $mysqli = include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['action'] == 'add') {
+    if ($_POST['action'] === 'add') {
         $type = $_POST['type'];
 
         $statement = $mysqli->prepare('INSERT INTO types (name)
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if ($_GET['action'] == 'get') {
+    if ($_GET['action'] === 'get') {
         $result = $mysqli->query('SELECT * FROM types');
         $array = array();
 
