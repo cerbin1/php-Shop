@@ -50,15 +50,15 @@
                 <h4 class="modal-title">Add product</h4>
             </div>
             <div class="modal-body">
-                <label> Name
+                <label id="products-name-label"> Name
                     <input id="product-name" class="form-control">
                 </label>
-                <label> Type
+                <label id="products-type-label"> Type
                     <select id="product-type" name="product-type" class="form-control">
 
                     </select>
                 </label>
-                <label> Price
+                <label id="products-price-label"> Price
                     <input id="product-price" class="form-control" type="number">
                 </label>
             </div>
@@ -155,16 +155,32 @@
             nameLabel.prop('class', 'has-error');
         }
 
+        function isValidName() {
+            var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
+            return namePattern.test(name);
+        }
+
         if (isValidAge()) {
             ageLabel.prop('class', 'has-success');
         } else {
             ageLabel.prop('class', 'has-error');
         }
 
+        function isValidAge() {
+            var agePattern = /^[0-9]{2}$/;
+            return agePattern.test(age) && 5 < age && age < 90;
+        }
+
         if (isValidPurchasePrice()) {
             purchasePriceLabel.prop('class', 'has-success');
         } else {
             purchasePriceLabel.prop('class', 'has-error');
+        }
+
+        function isValidPurchasePrice() {
+            var purchasePricePattern = /^[0-9]+(.[0-9]{2})?$/;
+            return purchasePricePattern.test(purchase_price)
+                && 0 < purchase_price && purchase_price < 10000;
         }
 
         if (isValidForm())
@@ -192,23 +208,6 @@
         function isValidForm() {
             return isValidName() && isValidAge() && isValidPurchasePrice();
         }
-
-
-        function isValidName() {
-            var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
-            return namePattern.test(name);
-        }
-
-        function isValidAge() {
-            var agePattern = /^[0-9]{2}$/;
-            return agePattern.test(age) && 5 < age && age < 90;
-        }
-
-        function isValidPurchasePrice() {
-            var purchasePricePattern = /^[0-9]+(.[0-9]{2})?$/;
-            return purchasePricePattern.test(purchase_price) && 0 < purchase_price && purchase_price < 10000;
-        }
-
     })
     ;
 
@@ -217,18 +216,71 @@
         var type = $("#product-type").val();
         var price = $("#product-price").val();
 
-        $.post('product.php', {
-            action: 'product',
-            name: name,
-            type: type,
-            price: price
-        })
-            .then(function (response) {
-                alert(response);
+        var nameLabel = $("#products-name-label");
+        var typeLabel = $("#products-type-label");
+        var priceLabel = $("#products-price-label");
+
+
+        if (isValidName()) {
+            nameLabel.prop('class', 'has-success');
+        } else {
+            nameLabel.prop('class', 'has-error');
+        }
+
+        function isValidName() {
+            var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
+            return namePattern.test(name);
+        }
+
+        if (isValidType()) {
+            typeLabel.prop('class', 'has-success');
+        } else {
+            typeLabel.prop('class', 'has-error');
+        }
+
+        function isValidType() {
+            var typePattern = /^[a-ząęóśłńćżź]{3,25}$/i;
+            return typePattern.test(type);
+        }
+
+        if (isValidPrice()) {
+            priceLabel.prop('class', 'has-success');
+        } else {
+            priceLabel.prop('class', 'has-error');
+        }
+
+        function isValidPrice() {
+            var pricePattern = /^[0-9]+(.[0-9]{2})?$/;
+            return pricePattern.test(price)
+                && 0 < price && price < 10000;
+        }
+
+        if (isValidForm()) {
+            $.post('product.php', {
+                action: 'product',
+                name: name,
+                type: type,
+                price: price
             })
-            .catch(function () {
-                alert('Error');
-            })
+                .then(function () {
+                    $('#add-product-modal').modal('hide');
+
+                    nameLabel.prop('class', '');
+                    typeLabel.prop('class', '');
+                    priceLabel.prop('class', '');
+                    $("#product-name").val('');
+                    $("#product-type").val('');
+                    $("#product-price").val('');
+                    showProducts();
+                })
+                .catch(function () {
+                    alert('Error');
+                })
+        }
+
+        function isValidForm() {
+            return isValidName() && isValidType() && isValidPrice();
+        }
     });
 
     $("#show-clients").click(function () {
