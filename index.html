@@ -131,6 +131,9 @@
                     showTypes();
                     $('#div-show-types').removeClass('has-error');
                 })
+                .catch(function () {
+                    alert('Error adding new type');
+                })
         }
         else {
             $('#div-show-types').addClass('has-error');
@@ -151,6 +154,9 @@
                 $('#add-client-modal').modal('hide');
                 showClients();
             })
+            .catch(function () {
+                alert('Error');
+            })
     });
 
     $("#add-product").click(function () {
@@ -165,6 +171,9 @@
         })
             .then(function (response) {
                 alert(response);
+            })
+            .catch(function () {
+                alert('Error');
             })
     });
 
@@ -207,6 +216,9 @@
                 }
                 $('#change-types-button').text('Add new type');
                 $('#add-type').attr('disabled', 'disabled');
+            })
+            .catch(function () {
+                alert('Error');
             })
     }
 
@@ -259,40 +271,44 @@
             action: 'clients'
         })
             .then(function (response) {
-                $("#display-records-div")
-                    .empty()
-                    .append($('<button>')
-                        .prop('type', 'button')
-                        .addClass('btn btn-primary')
-                        .attr('data-toggle', 'modal')
-                        .attr('data-target', '#add-client-modal')
-                        .text('Add client'))
-                    .append($('<table>')
-                        .attr('id', 'clients-table')
-                        .addClass('table')
-                        .addClass('table-hover')
-                        .append($('<tbody>')
-                            .append(($('<tr>')
-                                    .append($('<td>').text('ID'))
-                                    .append($('<td>').text('Name'))
-                                    .append($('<td>').text('Age'))
-                                    .append($('<td>').text('Purchase price'))
-                            ))
-                        )
-                    );
+                    $("#display-records-div")
+                        .empty()
+                        .append($('<button>')
+                            .prop('type', 'button')
+                            .addClass('btn btn-primary')
+                            .attr('data-toggle', 'modal')
+                            .attr('data-target', '#add-client-modal')
+                            .text('Add client'))
+                        .append($('<table>')
+                            .attr('id', 'clients-table')
+                            .addClass('table')
+                            .addClass('table-hover')
+                            .append($('<tbody>')
+                                .append(($('<tr>')
+                                        .append($('<td>').text('ID'))
+                                        .append($('<td>').text('Name'))
+                                        .append($('<td>').text('Age'))
+                                        .append($('<td>').text('Purchase price'))
+                                ))
+                            )
+                        );
 
-                var clients = JSON.parse(response).clients;
+                    var clients = JSON.parse(response).clients;
 
-                for (var index in clients) {
-                    $("#clients-table").append(
-                        $('<tr>')
-                            .append($('<td>').text(clients[index].clientID))
-                            .append($('<td>').text(clients[index].name))
-                            .append($('<td>').text(clients[index].age))
-                            .append($('<td>').text(clients[index].purchase_price))
-                    );
+                    for (var index in clients) {
+                        $("#clients-table").append(
+                            $('<tr>')
+                                .append($('<td>').text(clients[index].clientID))
+                                .append($('<td>').text(clients[index].name))
+                                .append($('<td>').text(clients[index].age))
+                                .append($('<td>').text(clients[index].purchase_price))
+                        );
+                    }
                 }
-            });
+                    .catch(function () {
+                        alert('Error');
+                    })
+            );
     }
 
     function showProducts() {
@@ -300,49 +316,53 @@
             action: 'products'
         })
             .then(function (response) {
-                loadTypesOfProducts();
+                    loadTypesOfProducts();
 
-                $("#display-records-div")
-                    .empty()
-                    .append($('<button>')
-                        .addClass('btn btn-primary')
-                        .prop('type', 'button')
-                        .attr('data-toggle', 'modal')
-                        .attr('data-target', '#add-product-modal')
-                        .text('Add product'))
-                    .append($('<button>')
-                        .attr('id', 'product-type-change')
-                        .addClass('btn')
-                        .prop('type', 'button')
-                        .text('Change types of products')
-                        .attr('data-toggle', 'modal')
-                        .attr('data-target', '#change-types'))
-                    .append($('<table>')
-                        .attr('id', 'products-table')
-                        .addClass('table')
-                        .addClass('table-hover')
-                        .append($('<tbody>')
-                            .append(($('<tr>')
-                                    .append($('<td>').text('ID'))
-                                    .append($('<td>').text('Name'))
-                                    .append($('<td>').text('Type'))
-                                    .append($('<td>').text('Price'))
-                            ))
-                        )
-                    );
+                    $("#display-records-div")
+                        .empty()
+                        .append($('<button>')
+                            .addClass('btn btn-primary')
+                            .prop('type', 'button')
+                            .attr('data-toggle', 'modal')
+                            .attr('data-target', '#add-product-modal')
+                            .text('Add product'))
+                        .append($('<button>')
+                            .attr('id', 'product-type-change')
+                            .addClass('btn')
+                            .prop('type', 'button')
+                            .text('Change types of products')
+                            .attr('data-toggle', 'modal')
+                            .attr('data-target', '#change-types'))
+                        .append($('<table>')
+                            .attr('id', 'products-table')
+                            .addClass('table')
+                            .addClass('table-hover')
+                            .append($('<tbody>')
+                                .append(($('<tr>')
+                                        .append($('<td>').text('ID'))
+                                        .append($('<td>').text('Name'))
+                                        .append($('<td>').text('Type'))
+                                        .append($('<td>').text('Price'))
+                                ))
+                            )
+                        );
 
-                var products = JSON.parse(response).products;
+                    var products = JSON.parse(response).products;
 
-                for (var index in products) {
-                    $('#products-table').append(
-                        $('<tr>')
-                            .append($('<td>').text(products[index].productID))
-                            .append($('<td>').text(products[index].name))
-                            .append($('<td>').text(products[index].type))
-                            .append($('<td>').text(products[index].price))
-                    );
+                    for (var index in products) {
+                        $('#products-table').append(
+                            $('<tr>')
+                                .append($('<td>').text(products[index].productID))
+                                .append($('<td>').text(products[index].name))
+                                .append($('<td>').text(products[index].type))
+                                .append($('<td>').text(products[index].price))
+                        );
+                    }
                 }
-            });
+                    .catch(function () {
+                        alert('Error');
+                    })
+            );
     }
 
     $("#show-products").click(function () {
