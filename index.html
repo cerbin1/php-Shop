@@ -173,21 +173,53 @@
         })
             .then(function (response) {
                 var types = JSON.parse(response).types;
+                console.log(types);
 
                 var productTypes = $('#div-show-types');
 
-                productTypes.empty();
+                productTypes.empty()
+                    .append($('<table>')
+                        .prop('id', 'show-types-table')
+                        .addClass('table table-striped table-hover')
+                        .append($('<tbody>')
+                            .append($('<tr>')
+                                .append($('<td>').text('Name'))
+                                .append($('<td>').text('Delete'))
+                            )));
                 for (var index in types) {
-                    productTypes
-                        .append($('<li>', {
-                            value: types[index].name,
-                            text: types[index].name
-                        }));
+                    $('#show-types-table')
+                        .append($('<tr>')
+                            .append($('<td>')
+                                .text(types[index].name))
+                            .append($('<td>')
+                                .append($('<a>')
+                                    .addClass('delete-type')
+                                    .prop('id', types[index].product_ID)
+                                    .append($('<img>')
+                                        .prop('src', 'images/delete.png')))
+                            ));
+
                 }
                 $('#change-types-button').text('Add new type');
                 $('#add-type').attr('disabled', 'disabled');
             })
     }
+
+    $(document).on('click', 'a.delete-type', function () {
+        console.log(this);
+        var idType = $(this).attr('id');
+        $.post('delete_type.php', {
+            action: 'delete',
+            id: idType
+        })
+            .then(function () {
+                showTypes();
+            })
+            .catch(function () {
+                alert("Delete type failed!");
+            })
+
+    });
 
     $('#change-types-button').on('click', function () {
         var valueOfButton = $('#change-types-button');
@@ -258,7 +290,7 @@
             });
     }
 
-    $("#show-products").click(function () {
+    function showProducts() {
         $.get('product.php', {
             action: 'products'
         })
@@ -306,6 +338,10 @@
                     );
                 }
             });
+    }
+
+    $("#show-products").click(function () {
+        showProducts();
     });
 </script>
 </body>

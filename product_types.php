@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $statement = $mysqli->prepare('INSERT INTO types (name)
             VALUES (?)');
-        echo $statement;
 
         $statement->bind_param('s', $type);
 
@@ -22,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] == 'get') {
-        $result = $mysqli->query('SELECT name FROM types');
+        $result = $mysqli->query('SELECT * FROM types');
         $array = array();
 
         while ($row = mysqli_fetch_assoc($result)) {
