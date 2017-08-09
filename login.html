@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>TODO</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
 </head>
 <body>
@@ -11,7 +13,9 @@
         <fieldset>
             <div class="row">
                 <div class="col-md-1 pull-right">
-                    <button class="btn btn-primary">Sign Up</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register-modal">
+                        Sign Up
+                    </button>
                 </div>
             </div>
 
@@ -46,5 +50,24 @@
         </fieldset>
     </div>
 </div>
+
+<div id="register-modal" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Registration</h3>
+            </div>
+            <div class="modal-body">
+                <form action=""></form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
