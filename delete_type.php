@@ -1,4 +1,5 @@
 <?php
+/** @var mysqli $mysqli */
 $mysqli = include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,6 +16,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             http_response_code(500);
         }
     }
-
-
 }

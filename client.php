@@ -1,4 +1,5 @@
 <?php
+/** @var mysqli $mysqli */
 $mysqli = include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,8 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $age = $_POST['age'];
         $purchase_price = $_POST['purchase_price'];
 
-        $statement = $mysqli->prepare('INSERT INTO clients (name, age, purchase_price)
-            VALUES (?, ?, ?)');
+        $statement = $mysqli->prepare('INSERT INTO clients (name, age, purchase_price) VALUES (?, ?, ?)');
 
         $statement->bind_param('sid', $name, $age, $purchase_price);
 
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($statement->execute()) {
                 http_response_code(201);
             } else {
-                http_response_code(500);
+                http_response_code(500);  // TODO zamiast tego rzuć wyjątek
             }
         } else {
             http_response_code(422);
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($_GET['action'] === 'clients') {
         $result = $mysqli->query('SELECT * FROM clients LIMIT 10');
         if ($result) {
-            $array = array();
+            $array = [];
 
             while ($row = mysqli_fetch_assoc($result)) {
                 $array[] = $row;
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             echo json_encode(['clients' => $array]);
         } else {
-            http_response_code(500);
+            http_response_code(500);  // TODO lepiej rzucić wyjątek
         }
     }
 }
