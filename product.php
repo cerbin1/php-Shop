@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             echo json_encode(['products' => $array]);
         } else {
-            http_response_code(500); // TODO zamiast tego rzuć wyjątek
+            throw new mysqli_sql_exception("Couldn't execute sql statement! HTTP response code: 500");
         }
     }
 }

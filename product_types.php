@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($statement->execute()) {
             http_response_code(201);
         } else {
-            http_response_code(500); // TODO zamiast tego lepiej rzucić wyjątek
+            throw new mysqli_sql_exception("Couldn't execute sql statement! HTTP response code: 500");
         }
     }
 }
