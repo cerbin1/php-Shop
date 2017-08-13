@@ -116,18 +116,20 @@ $("#add-client").click(function () {
 
 function isValidProductName() {
     var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
+    var name = $("#product-name").val();
     return namePattern.test(name);
 }
 
 function isValidProductType() {
     var typePattern = /^[a-ząęóśłńćżź]{3,25}$/i;
+    var type = $("#product-type").val();
     return typePattern.test(type);
 }
 
 function isValidProductPrice() {
     var pricePattern = /^[0-9]+(.[0-9]{2})?$/;
-    return pricePattern.test(price)
-        && 0 < price && price < 10000;
+    var price = $("#product-price").val();
+    return pricePattern.test(price) && 0 < price && price < 10000;
 }
 
 $("#add-product").click(function () {
@@ -384,4 +386,16 @@ $("#client-age").on('focusout', function () {
 
 $("#client-purchase-price").on('focusout', function () {
     $("#client-purchase-price-label").prop('class', (isValidClientPurchasePrice() ? 'has-success' : 'has-error'));
+});
+
+$("#product-name").on('focusout', function () {
+    $("#products-name-label").prop('class', (isValidProductName() ? 'has-success' : 'has-error'));
+});
+
+$("#product-type").on('focusout', function () {
+    $("#products-type-label").prop('class', (isValidProductType() ? 'has-success' : 'has-error'));
+});
+
+$("#product-price").on('focusout', function () {
+    $("#products-price-label").prop('class', (isValidProductPrice() ? 'has-success' : 'has-error'));
 });
