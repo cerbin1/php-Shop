@@ -69,23 +69,9 @@ $("#add-client").click(function () {
     var ageLabel = $("#client-age-label");
     var purchasePriceLabel = $("#client-purchase-price-label");
 
-    if (isValidClientName()) {
-        nameLabel.prop('class', 'has-success');
-    } else {
-        nameLabel.prop('class', 'has-error');
-    }
-
-    if (isValidClientAge()) {
-        ageLabel.prop('class', 'has-success');
-    } else {
-        ageLabel.prop('class', 'has-error');
-    }
-
-    if (isValidClientPurchasePrice()) {
-        purchasePriceLabel.prop('class', 'has-success');
-    } else {
-        purchasePriceLabel.prop('class', 'has-error');
-    }
+    changeStatusOf(nameLabel, isValidClientName());
+    changeStatusOf(ageLabel, isValidClientAge());
+    changeStatusOf(purchasePriceLabel, isValidClientPurchasePrice());
 
     if (isValidForm())
         $.post('client.php', {
@@ -132,6 +118,10 @@ function isValidProductPrice() {
     return pricePattern.test(price) && 0 < price && price < 10000;
 }
 
+function changeStatusOf(label, valid) {
+    label.prop('class', (valid ? 'has-success' : 'has-error'));
+}
+
 $("#add-product").click(function () {
     var name = $("#product-name").val();
     var type = $("#product-type").val();
@@ -141,23 +131,9 @@ $("#add-product").click(function () {
     var typeLabel = $("#products-type-label");
     var priceLabel = $("#products-price-label");
 
-    if (isValidProductName()) {
-        nameLabel.prop('class', 'has-success');
-    } else {
-        nameLabel.prop('class', 'has-error');
-    }
-
-    if (isValidProductType()) {
-        typeLabel.prop('class', 'has-success');
-    } else {
-        typeLabel.prop('class', 'has-error');
-    }
-
-    if (isValidProductPrice()) {
-        priceLabel.prop('class', 'has-success');
-    } else {
-        priceLabel.prop('class', 'has-error');
-    }
+    changeStatusOf(nameLabel, isValidProductName());
+    changeStatusOf(typeLabel, isValidProductType());
+    changeStatusOf(priceLabel, isValidProductPrice());
 
     if (isValidForm()) {
         $.post('product.php', {
@@ -376,6 +352,7 @@ $("#show-products").click(function () {
     showProducts();
 });
 
+/*
 $("#client-name").on('focusout', function () {
     $("#client-name-label").prop('class', (isValidClientName() ? 'has-success' : 'has-error'));
 });
@@ -398,4 +375,4 @@ $("#product-type").on('focusout', function () {
 
 $("#product-price").on('focusout', function () {
     $("#products-price-label").prop('class', (isValidProductPrice() ? 'has-success' : 'has-error'));
-});
+});*/
