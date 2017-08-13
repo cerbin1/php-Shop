@@ -17,7 +17,6 @@ function loadTypesOfProducts() {
         .catch(function () {
             alert("Failed loading types of products");
         })
-
 }
 
 $('#add-type').click(function () {
