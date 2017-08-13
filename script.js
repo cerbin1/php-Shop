@@ -114,6 +114,22 @@ $("#add-client").click(function () {
     }
 });
 
+function isValidProductName() {
+    var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
+    return namePattern.test(name);
+}
+
+function isValidProductType() {
+    var typePattern = /^[a-ząęóśłńćżź]{3,25}$/i;
+    return typePattern.test(type);
+}
+
+function isValidProductPrice() {
+    var pricePattern = /^[0-9]+(.[0-9]{2})?$/;
+    return pricePattern.test(price)
+        && 0 < price && price < 10000;
+}
+
 $("#add-product").click(function () {
     var name = $("#product-name").val();
     var type = $("#product-type").val();
@@ -123,39 +139,22 @@ $("#add-product").click(function () {
     var typeLabel = $("#products-type-label");
     var priceLabel = $("#products-price-label");
 
-
-    if (isValidName()) {
+    if (isValidProductName()) {
         nameLabel.prop('class', 'has-success');
     } else {
         nameLabel.prop('class', 'has-error');
     }
 
-    function isValidName() {
-        var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
-        return namePattern.test(name);
-    }
-
-    if (isValidType()) {
+    if (isValidProductType()) {
         typeLabel.prop('class', 'has-success');
     } else {
         typeLabel.prop('class', 'has-error');
     }
 
-    function isValidType() {
-        var typePattern = /^[a-ząęóśłńćżź]{3,25}$/i;
-        return typePattern.test(type);
-    }
-
-    if (isValidPrice()) {
+    if (isValidProductPrice()) {
         priceLabel.prop('class', 'has-success');
     } else {
         priceLabel.prop('class', 'has-error');
-    }
-
-    function isValidPrice() {
-        var pricePattern = /^[0-9]+(.[0-9]{2})?$/;
-        return pricePattern.test(price)
-            && 0 < price && price < 10000;
     }
 
     if (isValidForm()) {
@@ -182,7 +181,7 @@ $("#add-product").click(function () {
     }
 
     function isValidForm() {
-        return isValidName() && isValidType() && isValidPrice();
+        return isValidProductName() && isValidProductType() && isValidProductPrice();
     }
 });
 
