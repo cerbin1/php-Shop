@@ -42,19 +42,19 @@ $('#add-type').click(function () {
     }
 });
 
-function isValidName() {
+function isValidClientName() {
     var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
     var name = $("#client-name").val();
     return namePattern.test(name);
 }
 
-function isValidAge() {
+function isValidClientAge() {
     var agePattern = /^[0-9]{1,2}$/;
     var age = $("#client-age").val();
     return agePattern.test(age) && 5 < age && age < 90;
 }
 
-function isValidPurchasePrice() {
+function isValidClientPurchasePrice() {
     var purchasePricePattern = /^[0-9]+(.[0-9]{2})?$/;
     var purchase_price = $("#client-purchase-price").val();
     return purchasePricePattern.test(purchase_price)
@@ -70,19 +70,19 @@ $("#add-client").click(function () {
     var ageLabel = $("#client-age-label");
     var purchasePriceLabel = $("#client-purchase-price-label");
 
-    if (isValidName()) {
+    if (isValidClientName()) {
         nameLabel.prop('class', 'has-success');
     } else {
         nameLabel.prop('class', 'has-error');
     }
 
-    if (isValidAge()) {
+    if (isValidClientAge()) {
         ageLabel.prop('class', 'has-success');
     } else {
         ageLabel.prop('class', 'has-error');
     }
 
-    if (isValidPurchasePrice()) {
+    if (isValidClientPurchasePrice()) {
         purchasePriceLabel.prop('class', 'has-success');
     } else {
         purchasePriceLabel.prop('class', 'has-error');
@@ -111,7 +111,7 @@ $("#add-client").click(function () {
             });
 
     function isValidForm() {
-        return isValidName() && isValidAge() && isValidPurchasePrice();
+        return isValidClientName() && isValidClientAge() && isValidClientPurchasePrice();
     }
 });
 
@@ -377,13 +377,13 @@ $("#show-products").click(function () {
 });
 
 $("#client-name").on('focusout', function () {
-    $("#client-name-label").prop('class', (isValidName() ? 'has-success' : 'has-error'));
+    $("#client-name-label").prop('class', (isValidClientName() ? 'has-success' : 'has-error'));
 });
 
 $("#client-age").on('focusout', function () {
-    $("#client-age-label").prop('class', (isValidAge() ? 'has-success' : 'has-error'));
+    $("#client-age-label").prop('class', (isValidClientAge() ? 'has-success' : 'has-error'));
 });
 
 $("#client-purchase-price").on('focusout', function () {
-    $("#client-purchase-price-label").prop('class', (isValidPurchasePrice() ? 'has-success' : 'has-error'));
+    $("#client-purchase-price-label").prop('class', (isValidClientPurchasePrice() ? 'has-success' : 'has-error'));
 });
