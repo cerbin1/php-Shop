@@ -352,27 +352,26 @@ $("#show-products").click(function () {
     showProducts();
 });
 
-/*
 $("#client-name").on('focusout', function () {
-    $("#client-name-label").prop('class', (isValidClientName() ? 'has-success' : 'has-error'));
+    changeStatusOf($("#client-name-label"), isValidClientName());
 });
 
 $("#client-age").on('focusout', function () {
-    $("#client-age-label").prop('class', (isValidClientAge() ? 'has-success' : 'has-error'));
+    changeStatusOf($("#client-age-label"), isValidClientName());
 });
 
 $("#client-purchase-price").on('focusout', function () {
-    $("#client-purchase-price-label").prop('class', (isValidClientPurchasePrice() ? 'has-success' : 'has-error'));
+    changeStatusOf($("#client-purchase-price-label"), isValidClientPurchasePrice());
 });
 
 $("#product-name").on('focusout', function () {
-    $("#products-name-label").prop('class', (isValidProductName() ? 'has-success' : 'has-error'));
+    changeStatusOf($("#products-name-label"), isValidProductName());
 });
 
 $("#product-type").on('focusout', function () {
-    $("#products-type-label").prop('class', (isValidProductType() ? 'has-success' : 'has-error'));
+    changeStatusOf($("#products-type-label"), isValidProductType());
 });
 
 $("#product-price").on('focusout', function () {
-    $("#products-price-label").prop('class', (isValidProductPrice() ? 'has-success' : 'has-error'));
-});*/
+    changeStatusOf($("#products-price-label"), isValidProductPrice());
+});
