@@ -42,6 +42,25 @@ $('#add-type').click(function () {
     }
 });
 
+function isValidName() {
+    var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
+    var name = $("#client-name").val();
+    return namePattern.test(name);
+}
+
+function isValidAge() {
+    var agePattern = /^[0-9]{1,2}$/;
+    var age = $("#client-age").val();
+    return agePattern.test(age) && 5 < age && age < 90;
+}
+
+function isValidPurchasePrice() {
+    var purchasePricePattern = /^[0-9]+(.[0-9]{2})?$/;
+    var purchase_price = $("#client-purchase-price").val();
+    return purchasePricePattern.test(purchase_price)
+        && 0 < purchase_price && purchase_price < 10000;
+}
+
 $("#add-client").click(function () {
     var name = $("#client-name").val();
     var age = $("#client-age").val();
@@ -57,32 +76,16 @@ $("#add-client").click(function () {
         nameLabel.prop('class', 'has-error');
     }
 
-    function isValidName() {
-        var namePattern = /^[a-ząęóśłńćżź]{3,20}$/i;
-        return namePattern.test(name);
-    }
-
     if (isValidAge()) {
         ageLabel.prop('class', 'has-success');
     } else {
         ageLabel.prop('class', 'has-error');
     }
 
-    function isValidAge() {
-        var agePattern = /^[0-9]{1,2}$/;
-        return agePattern.test(age) && 5 < age && age < 90;
-    }
-
     if (isValidPurchasePrice()) {
         purchasePriceLabel.prop('class', 'has-success');
     } else {
         purchasePriceLabel.prop('class', 'has-error');
-    }
-
-    function isValidPurchasePrice() {
-        var purchasePricePattern = /^[0-9]+(.[0-9]{2})?$/;
-        return purchasePricePattern.test(purchase_price)
-            && 0 < purchase_price && purchase_price < 10000;
     }
 
     if (isValidForm())
@@ -110,8 +113,7 @@ $("#add-client").click(function () {
     function isValidForm() {
         return isValidName() && isValidAge() && isValidPurchasePrice();
     }
-})
-;
+});
 
 $("#add-product").click(function () {
     var name = $("#product-name").val();
@@ -372,4 +374,16 @@ function showProducts() {
 
 $("#show-products").click(function () {
     showProducts();
+});
+
+$("#client-name").on('focusout', function () {
+    $("#client-name-label").prop('class', (isValidName() ? 'has-success' : 'has-error'));
+});
+
+$("#client-age").on('focusout', function () {
+    $("#client-age-label").prop('class', (isValidAge() ? 'has-success' : 'has-error'));
+});
+
+$("#client-purchase-price").on('focusout', function () {
+    $("#client-purchase-price-label").prop('class', (isValidPurchasePrice() ? 'has-success' : 'has-error'));
 });
