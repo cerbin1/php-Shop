@@ -194,7 +194,7 @@ function showTypes() {
                         .append($('<td>')
                             .append($('<a>')
                                 .addClass('delete-type')
-                                .prop('id', types[index].product_ID)
+                                .prop('id', types[index].productID)
                                 .append($('<img>')
                                     .prop('src', 'images/delete.png')))
                         ));

@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['action'] === 'delete') {
         $id = $_POST['id'];
 
-        $statement = $mysqli->prepare('DELETE FROM types WHERE product_ID = ?');
+        $statement = $mysqli->prepare('DELETE FROM types WHERE productID =?');
 
         $statement->bind_param('i', $id);
 
