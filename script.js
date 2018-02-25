@@ -48,9 +48,9 @@ function isValidClientName() {
 }
 
 function isValidClientAge() {
-    var agePattern = /^[0-9]{1,2}$/;
+    var agePattern = /^[0-9]{1,3}$/;
     var age = $("#client-age").val();
-    return agePattern.test(age) && 5 < age && age < 90;
+    return agePattern.test(age) && 5 < age && age < 210;
 }
 
 function isValidClientPurchasePrice() {
@@ -91,8 +91,10 @@ $("#add-client").click(function () {
                 $("#client-purchase-price").val('');
                 showClients();
             })
-            .catch(function () {
-                alert('Error');
+            .catch(function (response) {
+                var error = JSON.parse(response.responseText);
+
+                alert('Error: ' + error.client);
             });
 
     function isValidForm() {
