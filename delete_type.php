@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statement->bind_param('i', $id);
 
         if ($statement->execute()) {
-            http_response_code(200);
+            http_response_code(204);
         } else {
             http_response_code(500);
         }
