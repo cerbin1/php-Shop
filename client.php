@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } else {
             http_response_code(422);
-            throw new mysqli_sql_exception("Couldn't execute sql statement! HTTP response code: 500");
         }
     }
 }
