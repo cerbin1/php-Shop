@@ -211,7 +211,6 @@ function showTypes() {
 }
 
 $(document).on('click', 'a.delete-type', function () {
-    console.log(this);
     var idType = $(this).prop('id');
     $.post('delete_type.php', {
         action: 'delete',
