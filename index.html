@@ -1,105 +1,104 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>TODO</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <meta charset='UTF-8'>
-    <title>Shop</title>
 </head>
 <body>
+<div class='container'>
+    <fieldset>
+        <div class="row">
+            <div class="col-md-1 pull-right">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register-modal">
+                    Sign Up
+                </button>
+            </div>
+        </div>
 
-<div class="buttons col-sm-2">
-    <button id="show-clients" class="btn">Clients</button>
-    <button id="show-products" class="btn">Products</button>
+        <div class="text-center">
+            <h1>Welcome to Shop system</h1>
+        </div>
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                    <input class="form-control" id="inputLogin" placeholder="Login">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                    <input type="button" id="login-button" class="btn-primary btn-lg btn-block" value="Login"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    Forgot Password?
+                </div>
+            </div>
+        </form>
+    </fieldset>
 </div>
 
-<div id="add-client-modal" class="modal fade" role="dialog">
+<div id="register-modal" class="modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add client</h4>
+                <h3 class="modal-title">Registration</h3>
             </div>
             <div class="modal-body">
-                <label id="client-name-label"> Name
-                    <input id="client-name" class="form-control">
-                </label>
-                <label id="client-age-label"> Age
-                    <input id="client-age" class="form-control" type="number">
-                </label>
-                <label id="client-purchase-price-label"> Purchase price
-                    <input id="client-purchase-price" class="form-control" type="number">
-                </label>
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="col-md-12 form-group">
+                            <label for="first-name-input">First Name</label>
+                            <input name="first-name" id="first-name-input" class="form-control" placeholder="first"/>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="last-name-input">Last Name</label>
+                            <input name="last-name" id="last-name-input" class="form-control" placeholder="last"/>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="username-input">Username</label>
+                            <input name="username" id="username-input" class="form-control" placeholder="login"/>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="password-input">Password</label>
+                            <input type="password" name="password" id="password-input" class="form-control"
+                                   placeholder="password"/>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="re-type-password-input">Confirm your password</label>
+                            <input type="password" name="re-type-password" id="re-type-password-input"
+                                   class="form-control" placeholder="re-enter password"/>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="mail-input">Email address</label>
+                            <input name="mail" id="mail-input" class="form-control" placeholder="e-mail"/>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="add-client" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
-</div>
-
-<div id="add-product-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add product</h4>
-            </div>
-            <div class="modal-body">
-                <label id="products-name-label"> Name
-                    <input id="product-name" class="form-control">
-                </label>
-                <label id="products-type-label"> Type
-                    <select id="product-type" name="product-type" class="form-control">
-
-                    </select>
-                </label>
-                <label id="products-price-label"> Price
-                    <input id="product-price" class="form-control" type="number">
-                </label>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="add-product" class="btn btn-primary">Add</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="change-types" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Change types</h4>
-            </div>
-            <div id="div-show-types" class="modal-body">
-                <label> Name
-                    <input id="type-name" class="form-control">
-                </label>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="change-types-button" class="btn">Show types</button>
-                <button id="add-type" class="btn btn-primary">Add</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="display-records-div" class="col-md-6">
-
 </div>
 <script>
-    $.getScript("script.js", function () {
+    $.getScript("login.js", function () {
         console.log("Script loaded and executed.");
-    });
-</script>
+    });</script>
 </body>
 </html>
